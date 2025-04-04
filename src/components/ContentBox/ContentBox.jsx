@@ -3,7 +3,7 @@ import { contentData } from "../../contentData.jsx";
 import { useState } from "react";
 import "./ContentBox.css";
 
-const ContentBox = () => {
+const ContentBox = ({ theme }) => {
   const [activeButtonId, setActiveButtonId] = useState(
     contentData[0]?.id || null
   );
@@ -15,13 +15,13 @@ const ContentBox = () => {
   };
 
   return (
-    <div className="contentbox-container">
+    <div className={`contentbox-container ${theme === "light" ? "" : "dark"}`}>
       {/* Left side area */}
-      <div className="button-area">
+      <div className={`button-area ${theme === "light" ? "" : "dark"}`}>
         {contentData.map((item) => (
           <button
             key={item.id}
-            className={`nav-button ${
+            className={`nav-button ${theme === "light" ? "" : "dark"} ${
               item.id === activeButtonId ? "active" : ""
             }`}
             onClick={() => handleButtonClick(item.id)}
@@ -31,7 +31,7 @@ const ContentBox = () => {
         ))}
       </div>
       {/* Right side area */}
-      <div className="content-area">
+      <div className={`content-area ${theme === "light" ? "" : "dark"}`}>
         {activeContent ? (
           activeContent.content
         ) : (

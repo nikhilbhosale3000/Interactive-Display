@@ -1,10 +1,16 @@
 :root {
-  --container-bg: #2d2d2d;
-  --areas-bg: #3a3a3a;
-  --text-color: #e0e0e0;
-  --text-color-active: #ffffff;
-  --button-bg: #555;
-  --button-bg-hover: #666;
+  --light-container-bg: #ffffff;
+  --light-areas-color: #f7f4ee;
+  --light-text-color: #1a1a1a;
+  --light-button-bg: #e0e0e0;
+  --light-button-bg-hover: #d5d5d5;
+
+  --dark-container-bg: #121212;
+  --dark-areas-color: #1e1e1e;
+  --dark-text-color: #e0e0e0;
+  --dark-button-bg: #2a2a2a;
+  --dark-button-bg-hover: #3a3a3a;
+
   --button-bg-active: #007bff;
   --border-radius-container: 12px;
   --border-radius-areas: 8px;
@@ -12,18 +18,24 @@
   --gap-main: 20px;
   --gap-buttons: 10px;
 }
-
 .contentbox-container {
   display: flex;
   gap: var(--gap-main);
-  background-color: var(--container-bg);
+  background-color: var(--light-container-bg);
   padding: 20px;
   border-radius: var(--border-radius-container);
   min-height: 350px;
-  max-width: 70%;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  color: var(--text-color);
+  max-width: 90%;
+  width: 100%;
+  color: var(--light-text-color);
   overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-top: 7rem;
+}
+
+.contentbox-container.dark {
+  background-color: var(--dark-container-bg);
+  color: var(--dark-text-color);
 }
 
 .button-area {
@@ -33,14 +45,18 @@
   gap: var(--gap-buttons);
   width: 200px;
   padding: 15px;
-  background-color: var(--areas-bg);
+  background-color: var(--light-areas-color);
   border-radius: var(--border-radius-areas);
+}
+
+.button-area.dark {
+  background-color: var(--dark-areas-color);
 }
 
 .nav-button {
   padding: 12px 18px;
   border: none;
-  background-color: var(--button-bg);
+  background-color: var(--light-button-bg);
   border-radius: var(--border-radius-button);
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.1s ease,
@@ -49,36 +65,56 @@
   font-weight: 500;
   width: 100%;
   box-sizing: border-box;
-  color: var(--text-color);
+  color: var(--light-text-color);
+}
+
+.nav-button.dark {
+  background-color: var(--dark-button-bg);
+  color: var(--dark-text-color);
 }
 
 .nav-button:hover {
-  background-color: var(--button-bg-hover);
+  background-color: var(--light-button-bg-hover);
   transform: translateY(-1px);
+}
+
+.nav-button.dark:hover {
+  background-color: var(--dark-button-bg-hover);
 }
 
 .nav-button.active {
   background-color: var(--button-bg-active);
-  box-shadow: 0 3px 8px rgba(0, 123, 255, 0.4);
+  color: var(--dark-text-color);
+  box-shadow: 0 3px 8px rgba(78, 140, 255, 0.4);
   font-weight: 600;
 }
 
-/* Content Area */
+.nav-button.dark.active {
+  background-color: var(--button-bg-active);
+}
 
 .content-area {
   flex-grow: 1;
-  background-color: var(--areas-bg);
+  background-color: var(--light-areas-color);
   padding: 25px 30px;
   border-radius: var(--border-radius-areas);
   overflow-y: auto;
 }
 
+.content-area.dark {
+  background-color: var(--dark-areas-color);
+}
+
 .content-area h2 {
   margin-top: 0;
-  color: #ffffff;
+  color: var(--light-text-color);
   border-bottom: 1px solid #555;
   padding-bottom: 10px;
   margin-bottom: 20px;
+}
+
+.content-area.dark h2 {
+  color: var(--dark-text-color);
 }
 
 .content-area p {
@@ -106,8 +142,8 @@
 
 .settings-button {
   padding: 10px 18px;
-  background-color: var(--button-bg-active); /* Use active color */
-  color: var(--text-color-active);
+  background-color: var(--button-bg-active);
+  color: var(--dark-text-color);
   border: none;
   border-radius: var(--border-radius-button);
   cursor: pointer;
@@ -117,6 +153,55 @@
 }
 
 .settings-button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+  background-color: #3a7ee0;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+@media screen and (max-width: 578px) {
+  .contentbox-container {
+    gap: 0.5rem;
+    padding: 7px;
+    min-height: 350px;
+    width: 95%;
+    margin: 0 10x;
+  }
+
+  .button-area {
+    gap: var(--gap-buttons);
+    min-width: 30%;
+    padding: 4px;
+  }
+
+  .nav-button {
+    padding: 10px 5px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    width: 100%;
+  }
+
+  .content-area {
+    flex-grow: 1;
+    background-color: var(--light-areas-color);
+    padding: 10px 10px;
+  }
+
+  .content-area h2 {
+    border-bottom: 1px solid #555;
+    font-size: 1.3rem;
+  }
+
+  .content-area p {
+    line-height: 1.4;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  .content-area li {
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
 }

@@ -2,6 +2,20 @@
   width: 100vw;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  background-color: #f7f4ee;
+  color: var(--light-text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.app.dark {
+  background-color: #232323;
+  color: var(--dark-text-color);
+}
+
+.mode-button {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
 }
